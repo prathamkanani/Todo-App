@@ -1,0 +1,22 @@
+{
+  "hello": "Hello",
+  "all": "All",
+  "ongoing": "Ongoing",
+  "pending": "Pending",
+  "completed": "Completed",
+  "low": "Low",
+  "medium": "Medium",
+  "high": "High",
+  "ddMmmYyyy": "dd MMM yyyy",
+  "update": "Update",
+  "create": "Create",
+  "userProfile": "User Profile",
+  "createTask": "Create Task",
+  "myTasks": "My Tasks",
+  "todoApp": "Todo App",
+  "theSmarterWayToManageWork": "The smarter way to manage work.",
+  "byContinuingYouAgreeToOur": "By continuing you agree to our",
+  "privacyPolicies": "Privacy Policies",
+  "and": "and",
+  "termsConditions": "Terms & Conditions"
+}
