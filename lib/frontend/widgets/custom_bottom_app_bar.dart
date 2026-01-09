@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../generated/l10n.dart';
 import '../../infrastructure/extension/context_extension.dart';
 
 class CustomBottomAppBar extends StatelessWidget {
@@ -30,7 +31,7 @@ class CustomBottomAppBar extends StatelessWidget {
                   visualDensity: VisualDensity.compact,
                 ),
               ),
-              const Text('Home'),
+              Text(S.of(context).home),
             ],
           ),
           Column(
@@ -46,7 +47,7 @@ class CustomBottomAppBar extends StatelessWidget {
                   visualDensity: VisualDensity.compact,
                 ),
               ),
-              const Text('Account'),
+              Text(S.of(context).account),
             ],
           ),
         ],

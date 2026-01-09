@@ -8,6 +8,7 @@ class BasePage extends StatelessWidget {
   final FloatingActionButtonLocation? floatingActionButtonLocation;
   final Widget? floatingActionButton;
   final Widget? bottomNavigationBar;
+  final bool bgColorNeeded;
 
   const BasePage({
     super.key,
@@ -16,13 +17,18 @@ class BasePage extends StatelessWidget {
     this.safeAreaTop = true,
     this.padding = const .all(16),
     this.floatingActionButtonLocation,
+    this.bgColorNeeded = false,
     this.floatingActionButton,
     this.bottomNavigationBar,
   });
 
   @override
   Widget build(BuildContext context) {
+    final ColorScheme colorScheme = ColorScheme.of(context);
     return Scaffold(
+      backgroundColor: bgColorNeeded
+          ? colorScheme.surfaceContainer
+          : colorScheme.secondary,
       appBar: appBar,
       body: SafeArea(
         top: safeAreaTop,

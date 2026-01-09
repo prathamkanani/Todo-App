@@ -5,3 +5,4 @@ const String googleAuth = String.fromEnvironment(
 );
 const String webClientId = String.fromEnvironment('WEB_CLIENT_ID');
 const String iOSClientId = String.fromEnvironment('IOS_CLIENT_ID');
+const String geminiApiKey = String.fromEnvironment('GEMINI-API');

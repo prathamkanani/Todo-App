@@ -9,4 +9,6 @@ final class AppSpacing {
   static const SizedBox w16 = SizedBox(width: 16,);
   static const SizedBox h24 = SizedBox(height: 24,);
   static const SizedBox w24 = SizedBox(width: 24,);
+  static const SizedBox h48 = SizedBox(height: 24,);
+  static const SizedBox w48 = SizedBox(width: 24,);
 }

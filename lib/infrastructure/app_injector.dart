@@ -1,21 +1,25 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../application/logic/auth/auth_cubit.dart';
 import '../application/logic/chat/chat_cubit.dart';
+import '../application/logic/chat_group/chat_group_cubit.dart';
 import '../application/logic/home_task/home_task_cubit.dart';
 import '../application/logic/profile/profile_cubit.dart';
 import '../application/logic/task/task_cubit.dart';
 import '../application/service/locator.dart';
 import '../domain/repository/auth_repository.dart';
+import '../domain/repository/chat_group_repository.dart';
 import '../domain/repository/chat_repository.dart';
 import '../domain/repository/home_task_repository.dart';
 import '../domain/repository/profile_repository.dart';
 import '../domain/repository/task_repository.dart';
 import 'repository/auth_repository.dart';
+import 'repository/chat_group_repository.dart';
 import 'repository/chat_repository.dart';
 import 'repository/home_task_repository.dart';
 import 'repository/profile_repository.dart';
 import 'repository/task_repository.dart';
 import 'source/auth_source.dart';
+import 'source/chat_group_source.dart';
 import 'source/chat_source.dart';
 import 'source/home_task_source.dart';
 import 'source/task_database_init.dart';
@@ -75,6 +79,15 @@ class DependencyInjector implements AppInjector {
     );
     locator.registerFactory<ChatCubit>(
       () => ChatCubit(chatRepository: locator.get()),
+    );
+
+    // Registering Chat Group dependencies
+    locator.registerFactory<ChatGroupSource>(() => LocalChatGroupSource());
+    locator.registerFactory<ChatGroupRepository>(
+      () => ChatGroupRepositoryImpl(chatGroupSource: locator.get()),
+    );
+    locator.registerFactory<ChatGroupCubit>(
+      () => ChatGroupCubit(chatGroupRepository: locator.get()),
     );
 
     // Registering Home Task dependencies

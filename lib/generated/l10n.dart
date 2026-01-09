@@ -178,6 +178,186 @@ class S {
       args: [],
     );
   }
+
+  /// `New Chat`
+  String get newChat {
+    return Intl.message('New Chat', name: 'newChat', desc: '', args: []);
+  }
+
+  /// `Chats`
+  String get chats {
+    return Intl.message('Chats', name: 'chats', desc: '', args: []);
+  }
+
+  /// `AI`
+  String get ai {
+    return Intl.message('AI', name: 'ai', desc: '', args: []);
+  }
+
+  /// `Clear Chat`
+  String get clearChat {
+    return Intl.message('Clear Chat', name: 'clearChat', desc: '', args: []);
+  }
+
+  /// `Hello User, Try our very own AI`
+  String get helloUserTryOurVeryOwnAi {
+    return Intl.message(
+      'Hello User, Try our very own AI',
+      name: 'helloUserTryOurVeryOwnAi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create a task`
+  String get createATask {
+    return Intl.message(
+      'Create a task',
+      name: 'createATask',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Give an idea`
+  String get giveAnIdea {
+    return Intl.message('Give an idea', name: 'giveAnIdea', desc: '', args: []);
+  }
+
+  /// `Deep Research`
+  String get deepResearch {
+    return Intl.message(
+      'Deep Research',
+      name: 'deepResearch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Loading chat failed!`
+  String get loadingChatFailed {
+    return Intl.message(
+      'Loading chat failed!',
+      name: 'loadingChatFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ask anything`
+  String get askAnything {
+    return Intl.message(
+      'Ask anything',
+      name: 'askAnything',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete`
+  String get delete {
+    return Intl.message('Delete', name: 'delete', desc: '', args: []);
+  }
+
+  /// `Todo title`
+  String get todoTitle {
+    return Intl.message('Todo title', name: 'todoTitle', desc: '', args: []);
+  }
+
+  /// `Enter a todo`
+  String get enterATodo {
+    return Intl.message('Enter a todo', name: 'enterATodo', desc: '', args: []);
+  }
+
+  /// `Description`
+  String get description {
+    return Intl.message('Description', name: 'description', desc: '', args: []);
+  }
+
+  /// `Enter todo description`
+  String get enterTodoDescription {
+    return Intl.message(
+      'Enter todo description',
+      name: 'enterTodoDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start Date`
+  String get startDate {
+    return Intl.message('Start Date', name: 'startDate', desc: '', args: []);
+  }
+
+  /// `Due Date`
+  String get dueDate {
+    return Intl.message('Due Date', name: 'dueDate', desc: '', args: []);
+  }
+
+  /// `Priority`
+  String get priority {
+    return Intl.message('Priority', name: 'priority', desc: '', args: []);
+  }
+
+  /// `Theme`
+  String get theme {
+    return Intl.message('Theme', name: 'theme', desc: '', args: []);
+  }
+
+  /// `Invalid Due Date!`
+  String get invalidDueDate {
+    return Intl.message(
+      'Invalid Due Date!',
+      name: 'invalidDueDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `MMMM dd`
+  String get dateFormat {
+    return Intl.message('MMMM dd', name: 'dateFormat', desc: '', args: []);
+  }
+
+  /// `Revert`
+  String get revert {
+    return Intl.message('Revert', name: 'revert', desc: '', args: []);
+  }
+
+  /// `Complete`
+  String get complete {
+    return Intl.message('Complete', name: 'complete', desc: '', args: []);
+  }
+
+  /// `Authenticated`
+  String get authenticated {
+    return Intl.message(
+      'Authenticated',
+      name: 'authenticated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign in with Google`
+  String get signInWithGoogle {
+    return Intl.message(
+      'Sign in with Google',
+      name: 'signInWithGoogle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home`
+  String get home {
+    return Intl.message('Home', name: 'home', desc: '', args: []);
+  }
+
+  /// `Account`
+  String get account {
+    return Intl.message('Account', name: 'account', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

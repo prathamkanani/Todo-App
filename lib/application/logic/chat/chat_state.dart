@@ -4,6 +4,13 @@ sealed class ChatState {}
 
 final class ChatLoadingState extends ChatState {}
 
+final class ChatHomePageState extends ChatState {}
+
+final class PromptState extends ChatState {
+  bool isLoading;
+  PromptState({required this.isLoading});
+}
+
 final class ChatLoadedState extends ChatState {
   final List<ChatEntity> chats;
 

@@ -57,8 +57,13 @@ class AppTheme {
       onError: Colors.white,
       surface: Colors.white,
       surfaceDim: Colors.white70,
-      onSurface: Color(0xFF000000),
-      outline: Color(0x0D000000),
+      onSurface: Color(0xff454746),
+      surfaceContainer: Color(0xffeceff1),
+    ),
+
+    textTheme: const TextTheme(
+      displayLarge: TextStyle(color: Color(0xFF000000)),
+      displayMedium: TextStyle(color: Color(0xFF000000)),
     ),
 
     // Card
@@ -73,20 +78,23 @@ class AppTheme {
     ),
 
     // App Bar
-    appBarTheme: const AppBarThemeData(backgroundColor: Color(0xFFFFFFFF)),
+    appBarTheme: const AppBarThemeData(
+      backgroundColor: Color(0xFFFFFFFF),
+      surfaceTintColor: Colors.transparent,
+      centerTitle: true,
+    ),
 
     // Input Decoration
     inputDecorationTheme: InputDecorationThemeData(
       hintStyle: const TextStyle(color: Colors.grey),
-      // enabledBorder: InputBorder.none,
-      border: OutlineInputBorder(
-        borderSide: const BorderSide(color: Color(0xFF000000)),
-        borderRadius: BorderRadius.circular(12),
-      ),
       enabledBorder: OutlineInputBorder(
-        borderSide: const BorderSide(color: Color(0xFF000000)),
-        borderRadius: BorderRadius.circular(12),
-      )
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide.none,
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: BorderSide.none,
+      ),
     ),
 
     // Elevated Button

@@ -2,6 +2,8 @@ import '../../domain/entity/chat_entity.dart';
 
 class ChatModel extends ChatEntity {
   ChatModel({
+    super.id,
+    super.chatGroupId,
     required super.text,
     required super.sentTime,
     required super.isSelf,
@@ -10,6 +12,8 @@ class ChatModel extends ChatEntity {
 
   factory ChatModel.fromEntity(ChatEntity chatEntity) {
     return ChatModel(
+      id: chatEntity.id,
+      chatGroupId: chatEntity.chatGroupId,
       text: chatEntity.text,
       sentTime: chatEntity.sentTime,
       isSelf: chatEntity.isSelf,
@@ -19,7 +23,9 @@ class ChatModel extends ChatEntity {
 
   factory ChatModel.fromJson(Map<String, dynamic> json) {
     return ChatModel(
-      text: json['text'],
+      id: json['id'],
+      chatGroupId: json['chat_group_id'],
+      text: json['message'],
       sentTime: DateTime.parse(json['sent_time']),
       isSelf: 0 == json['is_self'] ? false : true,
       isSent: 0 == json['is_sent'] ? false : true,
@@ -28,7 +34,8 @@ class ChatModel extends ChatEntity {
 
   Map<String, dynamic> toJson() {
     return {
-      'text': text,
+      'chat_group_id': chatGroupId,
+      'message': text,
       'sent_time': sentTime.toString(),
       'is_self': isSelf ? 1 : 0,
       'is_sent': isSent ? 1 : 0,

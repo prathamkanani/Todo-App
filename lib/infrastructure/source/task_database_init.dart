@@ -18,13 +18,41 @@ class LocalTaskDatabase {
     return openDatabase(
       path,
       version: _databaseVersion,
+      onConfigure: (db) async {
+        // This is require to enforce foreign key constraints
+        await db.execute('PRAGMA foreign_keys = ON');
+      },
       onCreate: (db, version) {
-        db.execute(
-          'CREATE TABLE tasks(id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, description TEXT, priority INTEGER, filter INTEGER, color INTEGER, start_date TEXT, due_date TEXT)',
-        );
-        db.execute(
-          'CREATE TABLE chat(id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT, sent_time TEXT, is_sent INTEGER, is_self INTEGER)',
-        );
+        db.execute('''
+          CREATE TABLE tasks(
+            id INTEGER PRIMARY KEY AUTOINCREMENT, 
+            title TEXT, 
+            description TEXT, 
+            priority INTEGER, 
+            filter INTEGER, 
+            color INTEGER, 
+            start_date TEXT, 
+            due_date TEXT
+          )
+        ''');
+        db.execute('''
+          CREATE TABLE chat(
+            id INTEGER PRIMARY KEY AUTOINCREMENT, 
+            chat_group_id INTEGER, 
+            message TEXT, 
+            sent_time TEXT, 
+            is_sent INTEGER, 
+            is_self INTEGER, 
+            FOREIGN KEY (chat_group_id) REFERENCES chat_group (id) ON DELETE CASCADE
+          )
+        ''');
+        db.execute('''
+          CREATE TABLE chat_group(
+            id INTEGER PRIMARY KEY AUTOINCREMENT, 
+            chat_title TEXT, 
+            created_at TEXT
+          )
+        ''');
       },
     );
   }
