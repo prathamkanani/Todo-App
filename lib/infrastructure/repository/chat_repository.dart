@@ -3,6 +3,9 @@ import '../../domain/entity/chat_group_entity.dart';
 import '../../domain/repository/chat_repository.dart';
 import '../source/chat_source.dart';
 
+/// Concrete implementation of the [ChatRepository] repository.
+///
+/// * [source] : This is the source that is called by the repository.
 class ChatRepositoryImpl implements ChatRepository {
   final ChatSource source;
 
@@ -28,18 +31,8 @@ class ChatRepositoryImpl implements ChatRepository {
   }
 
   @override
-  Future<void> edit(ChatEntity chat) async {
-    await source.edit(chat);
-  }
-
-  @override
   Future<void> delete(ChatEntity chat) async {
     await source.delete(chat);
-  }
-
-  @override
-  Future<void> clearChat() async {
-    await source.clear();
   }
 
   @override

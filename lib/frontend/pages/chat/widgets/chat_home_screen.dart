@@ -32,6 +32,22 @@ class ChatHomeScreen extends StatelessWidget {
     chatGroupCubit.createdGroup = true;
   }
 
+  void sendToGroup(Object? state) {
+    if (state is ChatGroupNewState) {
+      chatCubit.chats.clear();
+      chatCubit.sendChat(
+        ChatEntity(
+          chatGroupId: chatGroupCubit.randomId,
+          text: state.title,
+          sentTime: DateTime.now(),
+          isSelf: true,
+          isSent: true,
+        ),
+      );
+      controller.clear();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final TextTheme textTheme = TextTheme.of(context);
@@ -46,21 +62,7 @@ class ChatHomeScreen extends StatelessWidget {
           }
           return false;
         },
-        listener: (context, state) {
-          if (state is ChatGroupNewState) {
-            chatCubit.chats.clear();
-            chatCubit.sendChat(
-              ChatEntity(
-                chatGroupId: chatGroupCubit.randomId,
-                text: state.title,
-                sentTime: DateTime.now(),
-                isSelf: true,
-                isSent: true,
-              ),
-            );
-            controller.clear();
-          }
-        },
+        listener: (context, state) => sendToGroup(state),
         child: Column(
           children: <Widget>[
             Text(
@@ -71,11 +73,11 @@ class ChatHomeScreen extends StatelessWidget {
             ),
             AppSpacing.h48,
             ChatInitialChip(
-              chipTitle: S.of(context).createATask,
+              chipTitle: S.of(context).writeAnything,
               chatCubit: chatCubit,
               chatGroupCubit: chatGroupCubit,
               onTap: () {
-                createNewChatGroup(S.of(context).createATask);
+                createNewChatGroup(S.of(context).writeAnything);
               },
             ),
             AppSpacing.h16,

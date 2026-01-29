@@ -1,21 +1,22 @@
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import '../../application/service/auth_service.dart';
 import '../../domain/entity/profile_entity.dart';
-import '../../env.dart';
+import '../../domain/entity/session_entity.dart';
 
 /// Defines contracts for authentication operations.
 abstract interface class AuthDataSource {
-  Future<ProfileEntity?> signIn();
-  Future<void> signOut();
+  Future<ProfileEntity?> signIn(FederatedAuthType type);
+
+  Future<void> signOut(FederatedAuthType type);
+
   ProfileEntity? getUser();
 }
 
 class SupabaseAuthSource implements AuthDataSource {
   final SupabaseClient supabase;
+  final FederatedAuthService authService;
 
-  SupabaseAuthSource(this.supabase);
-
-  final GoogleSignIn googleSignIn = GoogleSignIn.instance;
+  SupabaseAuthSource(this.supabase, this.authService);
 
   /// Gets user from supabase current session.
   @override
@@ -25,41 +26,16 @@ class SupabaseAuthSource implements AuthDataSource {
     return ProfileEntity(userId: session.user.id);
   }
 
-  /// Lets user sign in through Google sign in.
+  /// Lets user sign in.
   @override
-  Future<ProfileEntity?> signIn() async {
-    // Initializing the Google sign in.
-    await googleSignIn.initialize(
-      serverClientId: webClientId,
-      clientId: iOSClientId,
-    );
-
-    // Perform the sign in.
-    // This opens native google account picker.
-    final GoogleSignInAccount googleAccount = await googleSignIn.authenticate();
-
-    // This requests explicit permission from
-    // user to access their email and profile.
-    final GoogleSignInClientAuthorization? googleAuthorization =
-        await googleAccount.authorizationClient.authorizationForScopes([
-          'email',
-        ]);
-
-    // Extracting the tokens.
-    final GoogleSignInAuthentication googleAuthentication =
-        googleAccount.authentication;
-    final String? idToken = googleAuthentication.idToken;
-    final String? accessToken = googleAuthorization?.accessToken;
-
-    if (idToken == null) {
-      throw 'No ID Token found.';
-    }
+  Future<ProfileEntity?> signIn(FederatedAuthType type) async {
+    final SessionEntity sessionEntity = await authService.signIn(type);
 
     // Handing over to supabase.
     final AuthResponse result = await supabase.auth.signInWithIdToken(
       provider: OAuthProvider.google,
-      idToken: idToken,
-      accessToken: accessToken,
+      idToken: sessionEntity.idToken,
+      accessToken: sessionEntity.accessToken,
     );
 
     // Get the current user.
@@ -71,8 +47,8 @@ class SupabaseAuthSource implements AuthDataSource {
 
   /// Lets the user sign out from supabase and google.
   @override
-  Future<void> signOut() async {
+  Future<void> signOut(FederatedAuthType type) async {
     await supabase.auth.signOut();
-    await googleSignIn.signOut();
+    await authService.signOut(type);
   }
 }

@@ -1,8 +1,14 @@
 import '../../domain/entity/chat_group_entity.dart';
 
+/// Description: Chat group model for data transfer.
 class ChatGroupModel extends ChatGroupEntity {
-  ChatGroupModel({super.id, required super.chatGroupTitle, required super.createdAt});
+  ChatGroupModel({
+    super.id,
+    required super.chatGroupTitle,
+    required super.createdAt,
+  });
 
+  /// This converts from [ChatGroupEntity] to [ChatGroupModel].
   factory ChatGroupModel.fromEntity(ChatGroupEntity chatGroupEntity) {
     return ChatGroupModel(
       chatGroupTitle: chatGroupEntity.chatGroupTitle,
@@ -10,6 +16,8 @@ class ChatGroupModel extends ChatGroupEntity {
     );
   }
 
+  /// This converts the data received from database to [ChatGroupModel]
+  /// For showing the received data in the UI.
   factory ChatGroupModel.fromJson(Map<String, dynamic> json) {
     return ChatGroupModel(
       id: json['id'],
@@ -18,10 +26,8 @@ class ChatGroupModel extends ChatGroupEntity {
     );
   }
 
+  /// This method is for storing the data to the database in the correct format.
   Map<String, dynamic> toJson() {
-    return {
-      'chat_title': chatGroupTitle,
-      'created_at': createdAt.toString()
-    };
+    return {'chat_title': chatGroupTitle, 'created_at': createdAt.toString()};
   }
 }

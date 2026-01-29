@@ -7,6 +7,8 @@ sealed class AuthState {}
 final class AuthLoading extends AuthState {}
 
 /// State when a user is authenticated.
+///
+/// * [profile] : The authenticated profile [ProfileEntity].
 final class AuthAuthenticated extends AuthState {
   final ProfileEntity profile;
 
@@ -14,8 +16,10 @@ final class AuthAuthenticated extends AuthState {
 }
 
 /// State when a user is not authenticated.
+///
+/// * [message] : The error message.
 final class AuthUnauthenticated extends AuthState {
-  final String? message;
+  final Object? message;
 
   AuthUnauthenticated({this.message});
 }

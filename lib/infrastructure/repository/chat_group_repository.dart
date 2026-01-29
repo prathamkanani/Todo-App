@@ -2,6 +2,9 @@ import '../../domain/entity/chat_group_entity.dart';
 import '../../domain/repository/chat_group_repository.dart';
 import '../source/chat_group_source.dart';
 
+/// Concrete implementation of the [ChatGroup] repository.
+///
+/// * [chatGroupSource] : This is the source that is called by the repository.
 class ChatGroupRepositoryImpl implements ChatGroupRepository {
   final ChatGroupSource chatGroupSource;
 

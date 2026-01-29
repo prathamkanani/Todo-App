@@ -45,5 +45,7 @@
   "authenticated": "Authenticated",
   "signInWithGoogle": "Sign in with Google",
   "home": "Home",
-  "account": "Account"
+  "account": "Account",
+  "writeAnything": "Write Anything",
+  "goToAiChatbot": "Go to AI Chatbot"
 }

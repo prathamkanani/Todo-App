@@ -166,7 +166,7 @@ class S {
 
   /// `and`
   String get and {
-    return Intl.message('and', name: 'and', desc: '', args: []);
+    return Intl.message(' and ', name: ' and ', desc: '', args: []);
   }
 
   /// `Terms & Conditions`
@@ -357,6 +357,26 @@ class S {
   /// `Account`
   String get account {
     return Intl.message('Account', name: 'account', desc: '', args: []);
+  }
+
+  /// `Write Anything`
+  String get writeAnything {
+    return Intl.message(
+      'Write Anything',
+      name: 'writeAnything',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Go to AI Chatbot`
+  String get goToAiChatbot {
+    return Intl.message(
+      'Go to AI Chatbot',
+      name: 'goToAiChatbot',
+      desc: '',
+      args: [],
+    );
   }
 }
 

@@ -21,7 +21,7 @@ class TaskList extends StatelessWidget {
       itemBuilder: (context, final int index) {
         final TaskEntity task = tasks[index];
         bool isComplete = false;
-        if (task.taskFilter?.name == S.of(context).completed) {
+        if (task.taskFilter == TaskFilter.completed) {
           isComplete = true;
         } else {
           isComplete = false;

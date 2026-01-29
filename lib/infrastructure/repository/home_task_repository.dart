@@ -2,6 +2,9 @@ import '../../domain/entity/task_entity.dart';
 import '../source/home_task_source.dart';
 import '../../domain/repository/home_task_repository.dart';
 
+/// Concrete implementation of the [HomeTaskRepository] repository.
+///
+/// * [source] : This is the source that is called by the repository.
 class HomeTaskRepositoryImpl implements HomeTaskRepository {
   final HomeTaskLocalSource source;
 

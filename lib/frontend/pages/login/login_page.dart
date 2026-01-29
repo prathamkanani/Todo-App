@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../application/logic/auth/auth_cubit.dart';
 import '../../../application/logic/auth/auth_state.dart';
 import '../../../domain/entity/profile_entity.dart';
-import '../../../generated/l10n.dart';
 import '../../../infrastructure/app_injector.dart';
+import '../../../infrastructure/extension/context_extension.dart';
 import 'widgets/login_view.dart';
 import '../home/home_page.dart';
 
@@ -34,13 +34,7 @@ class _LoginPageState extends State<LoginPage> {
   void _listenToAuthState(BuildContext context, final AuthState state) {
     if (state is AuthAuthenticated) {
       final ProfileEntity profile = state.profile;
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(
-          builder: (context) => HomePage(profileEntity: profile),
-        ),
-        (context) => false,
-      );
+      context.pushAndRemoveUntil(HomePage(profileEntity: profile));
     }
   }
 
@@ -53,8 +47,8 @@ class _LoginPageState extends State<LoginPage> {
         builder: (context, state) {
           return switch (state) {
             AuthLoading() => const Center(child: CircularProgressIndicator()),
-            AuthAuthenticated() => Center(
-              child: Text(S.of(context).authenticated),
+            AuthAuthenticated() => const Center(
+              child: CircularProgressIndicator(),
             ),
             AuthUnauthenticated() => LoginView(authCubit: authCubit),
           };

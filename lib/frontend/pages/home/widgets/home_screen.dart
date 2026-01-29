@@ -5,6 +5,8 @@ import '../../../../application/logic/home_task/home_task_state.dart';
 import '../../../../domain/entity/profile_entity.dart';
 import '../../../../generated/l10n.dart';
 import '../../../../infrastructure/extension/context_extension.dart';
+import '../../../config/app_spacing.dart';
+import '../../chat/chat_page.dart';
 import '../../create_task/create_task_page.dart';
 import '../../../shared/base_page.dart';
 import '../../create_task/widgets/create_task_animated_button.dart';
@@ -71,6 +73,20 @@ class _HomeScreenState extends State<HomeScreen> {
           SliverAppBar.large(
             title: Text(S.of(context).myTasks),
             surfaceTintColor: Colors.transparent,
+            actions: <Widget>[
+              IconButton.filledTonal(
+                onPressed: () {
+                  context.push(const ChatPage());
+                },
+                icon: const Icon(Icons.auto_awesome),
+                style: IconButton.styleFrom(
+                  backgroundColor: colorScheme.secondaryContainer.withValues(
+                    alpha: 0.7,
+                  ),
+                ),
+              ),
+              AppSpacing.w16,
+            ],
           ),
           PinnedHeaderSliver(child: TaskFilterList(cubit: cubit)),
           const SliverToBoxAdapter(child: SizedBox(height: 16)),
@@ -83,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
               return const SliverToBoxAdapter(child: SizedBox.shrink());
             },
           ),
-          const SliverToBoxAdapter(child: SizedBox(height: 16)),
+          const SliverToBoxAdapter(child: AppSpacing.h16),
         ],
       ),
     );

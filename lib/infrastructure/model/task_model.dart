@@ -1,5 +1,6 @@
 import '../../domain/entity/task_entity.dart';
 
+/// Task Model for data transfer.
 class TaskModel extends TaskEntity {
   TaskModel({
     super.taskFilter,
@@ -12,6 +13,7 @@ class TaskModel extends TaskEntity {
     required super.dueDate,
   });
 
+  /// This converts from [TaskEntity] to [TaskModel].
   factory TaskModel.fromEntity(TaskEntity task) {
     return TaskModel(
       id: task.id,
@@ -25,6 +27,8 @@ class TaskModel extends TaskEntity {
     );
   }
 
+  /// This converts the data received from database to [TaskModel]
+  /// For showing the received data in the UI.
   factory TaskModel.fromJson(Map<String, dynamic> json) {
     return TaskModel(
       id: json['id'] as int,
@@ -38,6 +42,7 @@ class TaskModel extends TaskEntity {
     );
   }
 
+  /// This method is used to store the [TaskEntity] into the database.
   Map<String, dynamic> toJson() {
     return {
       'id': id,

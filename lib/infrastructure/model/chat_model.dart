@@ -1,5 +1,6 @@
 import '../../domain/entity/chat_entity.dart';
 
+/// Chat model for data transfer.
 class ChatModel extends ChatEntity {
   ChatModel({
     super.id,
@@ -10,6 +11,7 @@ class ChatModel extends ChatEntity {
     required super.isSent,
   });
 
+  /// This converts from [ChatEntity] to [ChatModel].
   factory ChatModel.fromEntity(ChatEntity chatEntity) {
     return ChatModel(
       id: chatEntity.id,
@@ -21,6 +23,8 @@ class ChatModel extends ChatEntity {
     );
   }
 
+  /// This converts the data received from database to [ChatModel].
+  /// For showing the data received from the database in the UI.
   factory ChatModel.fromJson(Map<String, dynamic> json) {
     return ChatModel(
       id: json['id'],
@@ -32,6 +36,7 @@ class ChatModel extends ChatEntity {
     );
   }
 
+  /// This method is used to store the [ChatEntity] into the database.
   Map<String, dynamic> toJson() {
     return {
       'chat_group_id': chatGroupId,

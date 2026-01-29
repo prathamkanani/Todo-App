@@ -4,6 +4,7 @@ import 'auth_state.dart';
 
 /// The [Cubit] responsible for authentication related operations.
 class AuthCubit extends Cubit<AuthState> {
+  /// The [AuthRepository] repository that is needed as a dependency.
   final AuthRepository authRepository;
 
   AuthCubit({required this.authRepository}) : super(AuthLoading());

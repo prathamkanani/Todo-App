@@ -1,9 +1,7 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'env.dart';
-import 'firebase_options.dart';
 import 'frontend/config/app_theme.dart';
 import 'frontend/pages/login/login_page.dart';
 import 'generated/l10n.dart';
@@ -18,12 +16,11 @@ Future<void> main() async {
   // Initialise supabase.
   await SupabaseConfig.initializeSupabase();
 
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
   Gemini.init(apiKey: geminiApiKey);
 
   // Locate the dependencies.
   DependencyInjector().init();
+
   runApp(const MyApp());
 }
 

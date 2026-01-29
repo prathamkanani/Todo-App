@@ -49,6 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Enter todo description",
     ),
     "giveAnIdea": MessageLookupByLibrary.simpleMessage("Give an idea"),
+    "goToAiChatbot": MessageLookupByLibrary.simpleMessage("Go to AI Chatbot"),
     "hello": MessageLookupByLibrary.simpleMessage("Hello"),
     "helloUserTryOurVeryOwnAi": MessageLookupByLibrary.simpleMessage(
       "Hello User, Try our very own AI",
@@ -83,5 +84,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "todoTitle": MessageLookupByLibrary.simpleMessage("Todo title"),
     "update": MessageLookupByLibrary.simpleMessage("Update"),
     "userProfile": MessageLookupByLibrary.simpleMessage("User Profile"),
+    "writeAnything": MessageLookupByLibrary.simpleMessage("Write Anything"),
   };
 }

@@ -10,6 +10,11 @@ import 'widgets/ask_anything_field.dart';
 import 'widgets/chat_view.dart';
 import 'widgets/drawer_content.dart';
 
+/// # Chat Page UI
+///
+/// ## Features:
+///
+///
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
 
@@ -17,26 +22,50 @@ class ChatPage extends StatefulWidget {
   State<ChatPage> createState() => _ChatPage();
 }
 
+/// Chat Page [State] Object.
 class _ChatPage extends State<ChatPage> {
+  /// Late [ChatCubit] initialization
   late final ChatCubit chatCubit;
+
+  /// Late [ChatGroupCubit] initialization
   late final ChatGroupCubit chatGroupCubit;
+
+  /// Late [TextEditingController] initialization
   late final TextEditingController controller;
+
+  /// Accessing chats from [ChatCubit]
   late List<ChatEntity> chats = chatCubit.chats;
+
+  /// Giving a [FocusNode] to [TextFormField] for control.
   late final FocusNode chatFocusNode;
 
   @override
   void initState() {
     super.initState();
+
+    // Initializing the ChatGroupCubit using Locator.
     chatGroupCubit = locator.get<ChatGroupCubit>()..loadAllChats();
+
+    // Initializing the ChatCubit using Locator.
     chatCubit = locator.get<ChatCubit>()..homeScreen();
+
+    // Initializing the text controller.
     controller = TextEditingController();
+
+    // Initializing text field with FocusNode.
     chatFocusNode = FocusNode();
   }
 
   @override
   void dispose() {
+
+    // Disposing controller
     controller.dispose();
+
+    // Closing ChatGroupCubit
     chatGroupCubit.close();
+
+
     chatCubit.close();
     chatFocusNode.dispose();
     super.dispose();
@@ -84,21 +113,7 @@ class _ChatPage extends State<ChatPage> {
             chatGroupCubit: chatGroupCubit,
           ),
         ),
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(kToolbarHeight),
-          child: Container(
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: colorScheme.surfaceContainer.withValues(alpha: 0.8),
-                  blurRadius: 5.0,
-                  spreadRadius: 20.0,
-                ),
-              ],
-            ),
-            child: AppBar(title: Text(S.of(context).ai)),
-          ),
-        ),
+        appBar: AppBar(title: Text(S.of(context).ai)),
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(16),

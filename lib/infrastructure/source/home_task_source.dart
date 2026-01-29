@@ -5,8 +5,11 @@ import 'task_database_init.dart';
 
 abstract interface class HomeTaskSource {
   Future<List<TaskEntity>> getFilteredTasks(TaskFilter filter);
+
   Future<void> deleteTask(int id);
+
   Future<void> markAsComplete(TaskEntity task);
+
   Future<void> revert(TaskEntity task);
 }
 
@@ -15,7 +18,8 @@ class HomeTaskLocalSource implements HomeTaskSource {
 
   int taskFilterToInt(DateTime startDate, DateTime dueDate) {
     DateTime now = DateTime.now();
-    if (startDate.isBefore(now) && dueDate.isAfter(now)) {
+    if (startDate.isAtSameMomentAs(now) &&
+        (dueDate.isAfter(now) || dueDate.isAtSameMomentAs(now))) {
       return 1;
     } else {
       return 2;

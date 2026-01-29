@@ -5,6 +5,7 @@ import '../application/logic/chat_group/chat_group_cubit.dart';
 import '../application/logic/home_task/home_task_cubit.dart';
 import '../application/logic/profile/profile_cubit.dart';
 import '../application/logic/task/task_cubit.dart';
+import '../application/service/auth_service.dart';
 import '../application/service/locator.dart';
 import '../domain/repository/auth_repository.dart';
 import '../domain/repository/chat_group_repository.dart';
@@ -18,6 +19,7 @@ import 'repository/chat_repository.dart';
 import 'repository/home_task_repository.dart';
 import 'repository/profile_repository.dart';
 import 'repository/task_repository.dart';
+import 'service/auth_service.dart';
 import 'source/auth_source.dart';
 import 'source/chat_group_source.dart';
 import 'source/chat_source.dart';
@@ -43,9 +45,15 @@ class DependencyInjector implements AppInjector {
 
     locator.registerSingleton(LocalTaskDatabase().database);
 
+    // Registering Federated Auth service
+    locator.registerFactory<FederatedAuthService>(() => AuthService());
+
     // Registering Auth dependencies
-    locator.registerFactory<SupabaseAuthSource>(
-      () => SupabaseAuthSource(locator.get()),
+    locator.registerFactory<AuthDataSource>(
+      () => SupabaseAuthSource(
+        locator.get<SupabaseClient>(),
+        locator.get<FederatedAuthService>(),
+      ),
     );
     locator.registerFactory<AuthRepository>(
       () => AuthRepositoryImpl(locator.get()),

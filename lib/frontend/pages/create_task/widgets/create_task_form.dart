@@ -56,7 +56,8 @@ class _CreateTaskFormState extends State<CreateTaskForm> {
 
   TaskFilter taskFilter(DateTime startDate, DateTime dueDate) {
     DateTime now = DateTime.now();
-    if (startDate.isBefore(now) && dueDate.isAfter(now)) {
+    if (startDate.isAtSameMomentAs(now) &&
+        (dueDate.isAfter(now) || dueDate.isAtSameMomentAs(now))) {
       return TaskFilter.ongoing;
     } else {
       return TaskFilter.pending;

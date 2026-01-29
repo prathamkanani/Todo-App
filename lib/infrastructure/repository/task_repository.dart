@@ -3,6 +3,9 @@ import '../../domain/repository/task_repository.dart';
 import '../model/task_model.dart';
 import '../source/task_source.dart';
 
+/// Concrete implementation of the [TaskRepository] repository.
+///
+/// * [taskSource] : This is the source that is called by the repository.
 class TaskRepositoryImpl implements TaskRepository {
   final TaskSource taskSource;
 
